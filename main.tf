@@ -24,11 +24,19 @@ resource "aws_instance" "gitlab" {
 
   provisioner "remote-exec" {
     inline = [
-    //  "sudo EXTERNAL_URL=\"https://${var.external_url}\" apt-get install gitlab-ee",
-    "sudo apt-get install -y gitlab-ee"
+      "curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash",
+      # "sudo EXTERNAL_URL=\"https://${var.external_url}\" apt-get install gitlab-ee",
+      "sudo apt-get install -y gitlab-ee"
     ]
   }
 
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 3",
+      "sudo gitlab-ctl reconfigure"
+    ]
+  }
+    
   tags = {
     "Name"      = "${var.name} ${count.index} / ${var.max_servers}",
     "andriitag" = "true",

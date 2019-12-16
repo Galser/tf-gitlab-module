@@ -5,7 +5,7 @@ variable "name" {
 variable "ami" {}
 variable "subnet_id" {}
 variable "instance_type" {
-  default = "m5.large" // ? maybe m5.xlarge
+  default = "m5.xlarge" // ? maybe m5.xlarge
 }
 variable "security_groups" {}
 variable "max_servers" {
