@@ -17,7 +17,4 @@ sudo apt update -y
 sleep 3
 which curl || (
   sudo apt install -y curl wget openssh-server ca-certificates
-  sleep 3
-  # installing GitLab repo
-  curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
 )
