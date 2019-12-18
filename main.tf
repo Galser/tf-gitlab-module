@@ -1,5 +1,5 @@
 # Module that deploys AWS instance and provision GitLab 
-# With let's encrypt SSL 
+# NO SSL, this is done for self-signed check oif TFE 
 # Require AMazon provider defined + some RS SSH key
 
 
@@ -33,10 +33,11 @@ resource "aws_instance" "gitlab" {
   provisioner "remote-exec" {
     inline = [
       "sleep 3",
+      "sudo sed -i 's/gitlab.example.com/${var.external_url}/g' /etc/gitlab/gitlab.rb",
       "sudo gitlab-ctl reconfigure"
     ]
   }
-    
+
   tags = {
     "Name"      = "${var.name} ${count.index} / ${var.max_servers}",
     "andriitag" = "true",
