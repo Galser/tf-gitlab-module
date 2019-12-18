@@ -14,7 +14,7 @@ module "gitlab" {
   security_groups = [var.vpc_security_group_ids[var.region]]
 
   #proxy_port = "3128"
-  external_url = "test.example.com" # not used for now
+  external_url = "loki.guselietov.com"
   key_name     = aws_key_pair.sshkey.id
   key_path     = "~/.ssh/id_rsa"
 }
